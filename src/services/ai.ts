@@ -1,7 +1,8 @@
 import { GoogleGenAI } from "@google/genai";
 import { Transaction, Stats } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
+const apiKey = process.env.GEMINI_API_KEY || import.meta.env.VITE_GEMINI_API_KEY || "";
+const ai = new GoogleGenAI({ apiKey });
 
 export const aiService = {
   async getFinancialInsights(stats: Stats, transactions: Transaction[], profile: string) {
